@@ -92,7 +92,7 @@ if (isset($_REQUEST['type'])) {
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:mixi="http://mixi-platform.com/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr" xmlns:og="http://ogp.me/ns#" xmlns:mixi="http://mixi-platform.com/ns#">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -150,25 +150,12 @@ if (isset($_REQUEST['type'])) {
 </head>
 <body>
 
-<!-- facebook -->
-<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1&appId=254469811382518";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
 
 <?php
 if (preg_match("/(iphone|ipod|android)/i",$ua)){
    	exit ("<span style='font-size:80px;'>
    			Sorry ,Particle2dx doesn't work on MobilePhone. <br/><br/>
    			use WinPC/Mac. <br/><br/>
-   			
-   			<a href='https://www.youtube.com/channel/UCAa8s6pDjeER0SqMgvme4ew'>Youtube Tutorial</a><br/><br/>
    			
    			<img src='thumbnail.png' style='border:2px solid black;' /><br/><br/>
    			<img src='thumbnail2.png' style='border:2px solid black;' /><br/>
@@ -206,12 +193,6 @@ $plist_64=base64_encode($plist_temp);
  
 	 <a href="javascript:$('#top_pane_shortcut').slideToggle(30); ">about</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
 
-	 <!-- facebook -->
-	 <div class="fb-like" data-href="http://particle2dx.com" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-	 <!-- twitter -->
-<a href="https://twitter.com/intent/tweet?button_hashtag=particle2dx&text=My%20impression%20is...%20%20My%20feedback%20is....%20%20I%20found%20Bug....%20" class="twitter-hashtag-button" data-url="http://particle2dx.com">Tweet #particle2dx</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script> 
-
 </div>
 
 <div id="top_pane_shortcut" style="display:none; padding-left:10px; padding-right:10px; padding-bottom:10px; background-color:#393939" >
@@ -219,11 +200,6 @@ $plist_64=base64_encode($plist_temp);
 	<div style='padding:15px;font-size:15px; background-color:#222222; 
 	    -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */  
 		-moz-border-radius: 10px;   /* Firefox用 */  ' >	
-		 <a href="https://www.youtube.com/channel/UCAa8s6pDjeER0SqMgvme4ew" target="_blank" style="font-size:140%;font-weight:bold;" >YoutubeTutorial</a> <span style='color:gray'>10 second videos</span><br/>
-		 <a href="https://www.facebook.com/particle2dx" target="_blank" style="font-size:140%;font-weight:bold;" >FacebookPage</a><br/>
-		 <!--a href="doc.html" target="_blank">Document(Japanese)</a><br/ -->
-		 <a href="https://github.com/mash76/particle2dx" target="_blank" style="font-size:140%;font-weight:bold;" >Github</a> <span style='color:gray;'>sourcecode of this site</span>
-	
 		 <br/><br/>
 	
 		<span style='font-size:140%; font-weight:bold;' >Keyboard Shortcuts</span>
