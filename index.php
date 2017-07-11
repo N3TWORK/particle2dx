@@ -449,7 +449,7 @@ $plist_64=base64_encode($plist_temp);
 						layers=cc.Director.getInstance().getRunningScene().getChildren();
 						layers[0].addChild(bg_sprite,2);
 						
-						slot_bg=-2;
+						slot_bg=-1;
 						dumpToInputTag(slot);
 					}
 			  });
