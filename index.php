@@ -179,19 +179,23 @@ $plist_64=base64_encode($plist_temp);
 ?>
 <div style="background-color:#393939;padding:3px;padding-left:10px;">
 	 <span style="font-size:170%;font-weight:bold;color:white;" >Particle2dx</span>
-	 design particle for Cocos2dx CoronaSDK
-	 <script>
-	    function topPaneToggle(p_name){
-	    	if (p_name=="tutorial"){
-		    	$('#top_pane_shortcut').hide();
-	    	}else{
-		    	$('#top_pane_tutorial').hide();
-	    	}
-		    $('#top_pane_'+p_name).slideToggle(100);
-	    }
-	 </script>
- 
-	 <a href="javascript:$('#top_pane_shortcut').slideToggle(30); ">about</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  
+    | <b><font color="red">DO NOT SHARE THIS PAGE WITH ANYBODY</font></b>
+    |
+    <script>
+        function topPaneToggle(p_name){
+            if (p_name=="tutorial"){
+                $('#top_pane_shortcut').hide();
+            }else{
+                $('#top_pane_tutorial').hide();
+            }
+            $('#top_pane_'+p_name).slideToggle(100);
+        }
+    </script>
+
+    <a href="javascript:$('#top_pane_shortcut').slideToggle(30); "><b>HELP</b></a>
+    <br>
+    Original Project: https://github.com/mash76/particle2dx
+
 
 </div>
 
