@@ -69,7 +69,7 @@ var MyLayer = cc.Layer.extend({
         prev_string.setVisible(false);
         		
 		//デフォルトエミッタを作成;
-		getPlist("meteor_me3.plist");
+		getPlist("magic_Confetti2.plist");
 		togglePane('template');//初期表示panel
 	},
 	

@@ -38,6 +38,7 @@
         //engineDir:'cocos2d/',
         SingleEngineFile:'Cocos2d-html5-v2.2.3.min.js',
         appFiles:[
+            'CCParticleSystem.js',
             'myApp.js'//add your own files in order here
         ]
     };
