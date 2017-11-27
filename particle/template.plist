@@ -106,5 +106,13 @@
 	<string>__textureFileName__.png</string>
 	<key>textureImageData</key>
 	<string>__png_base64__</string>
+	<key>sizeMidPoints</key>
+	<array>
+		__sizeMidPoints__
+	</array>
+	<key>opacityMidPoints</key>
+	<array>
+		__opacityMidPoints__
+	</array>
 </dict>
 </plist>

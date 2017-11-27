@@ -879,6 +879,54 @@ $plist_64=base64_encode($plist_temp);
 	   	   //emitter からテキストボックスへ
 	   	   dumpToInputTag(slot);
 	   });
+
+	   function parseMidPoint(str, silent, scale1) {
+		   	var alertText = "Format: timePercentage, value, variant. Example: 0.2, 0.9, 0.1";
+		   	var informFunc = alert;
+		   	if (silent) {
+		   		informFunc = function(text){ };
+		   	}
+	   		var params = str.split(",");
+	   		if (params.length != 3) {
+	   			informFunc(alertText);
+	   			return null;
+	   		}
+
+	   		for (var i = 0; i < params.length; i++) {
+	   			if (!$.isNumeric(params[i])) {
+	   				informFunc(alertText);
+		   			return null;
+	   			}
+	   		}
+
+	   		var f1 = parseFloat(params[0]);
+	   		var f2 = parseFloat(params[1]);
+	   		var f3 = parseFloat(params[2]);
+
+	   		if (f1 <= 0 || f1 >= 1) {
+	   			informFunc("timePercentage need to be greater than 0 and less than 1");
+	   			return null;
+	   		}
+
+	   		// if (f2 < 0 || f2 > 1) {
+	   		// 	informFunc("value need to be greater than or equal to 0 and less than or equal to 1");
+	   		// 	return null;
+	   		// }
+
+	   		// if (f3 < 0 || f3 > 1) {
+	   		// 	informFunc("variant need to be greater than or equal to 0 and less than or equal to 1");
+	   		// 	return null;
+	   		// }
+
+	   		return [f1, f2, f3];
+	   }
+
+	   function validateMidPoint(str) {
+	   		if (str.length > 0 && parseMidPoint(str, false) == null) return false;
+			updSizeMidPoints();
+			updOpacityMidPoints();
+			dumpToInputTag();
+	   }
 	   
 	</script>
 	</td><td style="vertical-align:top;">
@@ -908,6 +956,36 @@ $plist_64=base64_encode($plist_temp);
 			emitter[slot].setEndColorVar(new cc.Color4F(parseFloat($("#end_r_var").val()),parseFloat($("#end_g_var").val()),parseFloat($("#end_b_var").val()),
 		   						parseFloat($("#end_a_var").val())));//r,g,b,a
 		};
+
+		updSizeMidPoints=function() {
+			var midPoints = []
+			for (var i = 1; i <= 4; i++) {
+				var text = $("#size_midpoint" + i).val();
+				var midPoint = parseMidPoint(text, true);
+
+				if (midPoint != null) {
+					midPoints.push(midPoint);
+				}
+			}
+			midPoints.sort(function(i,j) { return i[0] > j[0] });
+
+			emitter[slot].setSizeMidPoints(midPoints);
+		}
+
+		updOpacityMidPoints=function() {
+			var midPoints = []
+			for (var i = 1; i <= 4; i++) {
+				var text = $("#opacity_midpoint" + i).val();
+				var midPoint = parseMidPoint(text, true);
+
+				if (midPoint != null) {
+					midPoints.push(midPoint);
+				}
+			}
+			midPoints.sort(function(i,j) { return i[0] > j[0] });
+
+			emitter[slot].setOpacityMidPoints(midPoints);
+		}
 	</script>
 
 			<table>
@@ -1060,6 +1138,22 @@ $plist_64=base64_encode($plist_temp);
 						if (!$.isNumeric(this.value)) { alert('set number!'); return false; } 			
 						$('#start_b_var').val(parseFloat(this.value));
 						updStartColVar(); dumpToInputTag(); "> 	
+			</td></tr>
+
+			<tr><td>	
+						Size Mid-points 
+			</td><td>
+						<span id="start_b_disp">[timePercentage],[value],[variant]</span>   
+			</td><td>
+						
+				<input type="text" size="20" id="size_midpoint1" name="size_midpoint1" 
+					onChange="validateMidPoint(this.value)">
+				<input type="text" size="20" id="size_midpoint2" name="size_midpoint2" 
+					onChange="validateMidPoint(this.value)">
+				<input type="text" size="20" id="size_midpoint3" name="size_midpoint3" 
+					onChange="validateMidPoint(this.value)">
+				<input type="text" size="20" id="size_midpoint4" name="size_midpoint4" 
+					onChange="validateMidPoint(this.value)">
 			</td></tr>
 			</table>
 	
@@ -1227,6 +1321,22 @@ $plist_64=base64_encode($plist_temp);
 						if (!$.isNumeric(this.value)) { alert('set number!'); return false; } 			
 						$('#end_b_var').val(parseFloat(this.value));
 						updEndColVar(); dumpToInputTag(); "> 
+			</td></tr>
+
+			<tr><td>	
+						Opacity Mid-points 
+			</td><td>
+						<span id="start_b_disp">[timePercentage],[value],[variant]</span>   
+			</td><td>
+						
+				<input type="text" size="20" id="opacity_midpoint1" name="opacity_midpoint1" 
+					onChange="validateMidPoint(this.value)">
+				<input type="text" size="20" id="opacity_midpoint2" name="opacity_midpoint2" 
+					onChange="validateMidPoint(this.value)">
+				<input type="text" size="20" id="opacity_midpoint3" name="opacity_midpoint3" 
+					onChange="validateMidPoint(this.value)">
+				<input type="text" size="20" id="opacity_midpoint4" name="opacity_midpoint4" 
+					onChange="validateMidPoint(this.value)">
 			</td></tr>
 			</table>
 

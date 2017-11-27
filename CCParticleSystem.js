@@ -1125,6 +1125,18 @@ cc.ParticleSystem = cc.Node.extend(/** @lends cc.ParticleSystem# */{
         this._startColorVar = startColorVar;
     },
 
+    setSizeMidPoints:function (midPoints) {
+        this._sizeMidPointTimePercentages = midPoints.map(function(p) { return p[0] });
+        this._sizeMidPointValues = midPoints.map(function(p) { return p[1] });
+        this._sizeMidPointVariants = midPoints.map(function(p) { return p[2] });
+    },
+
+    setOpacityMidPoints:function (midPoints) {
+        this._opacityMidPointTimePercentages = midPoints.map(function(p) { return p[0] });
+        this._opacityMidPointValues = midPoints.map(function(p) { return p[1] });
+        this._opacityMidPointVariants = midPoints.map(function(p) { return p[2] });
+    },
+
     /**
      * get end color and end color variation of each particle
      * @return {cc.Color4F}

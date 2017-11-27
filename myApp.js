@@ -457,6 +457,28 @@ function dumpToInputTag(p_slot){
 		  	$('#type_rad').css('font-weight','bold');
 		}		
 
+		for (var i = 0; i < emitter[p_slot]._sizeMidPointValues.length; i++) {
+			var midPoint = [];
+			midPoint[0] = emitter[p_slot]._sizeMidPointTimePercentages[i];
+			midPoint[1] = emitter[p_slot]._sizeMidPointValues[i];
+			midPoint[2] = emitter[p_slot]._sizeMidPointVariants[i];
+
+			cc.log("set <size_midpoint" + (i+1) + "> to: " + midPoint.toString());
+
+			$("#size_midpoint" + (i+1)).val(midPoint.toString());
+		}
+
+		for (var i = 0; i < emitter[p_slot]._opacityMidPointValues.length; i++) {
+			var midPoint = [];
+			midPoint[0] = emitter[p_slot]._opacityMidPointTimePercentages[i];
+			midPoint[1] = emitter[p_slot]._opacityMidPointValues[i];
+			midPoint[2] = emitter[p_slot]._opacityMidPointVariants[i];
+
+			cc.log("set <opacity_midpoint" + (i+1) + "> to: " + midPoint.toString());
+
+			$("#opacity_midpoint" + (i+1)).val(midPoint.toString());
+		}
+
 		$('#emit_rate_disp').html(round2(emitter[p_slot].getEmissionRate()));
 
 		xml=baseXML2Plist(p_slot,true,'cocos',cc.Codec.Base64.decode( xml_base64 ));
@@ -579,6 +601,53 @@ function baseXML2Plist(p_slot,isPNG,p_type,baseStr){
 	bl=emitter[p_slot].getBlendFunc();
 	l_xml=l_xml.replace(/__blendFuncDestination__/m, bl.dst);		
 	l_xml=l_xml.replace(/__blendFuncSource__/m, bl.src);
+
+
+	var sizeMidPointsStr = "";
+	for (var i = 0; i < emitter[p_slot]._sizeMidPointValues.length; i++) {
+		var timePercentage = emitter[p_slot]._sizeMidPointTimePercentages[i];
+		var value = emitter[p_slot]._sizeMidPointValues[i];
+		var variant = emitter[p_slot]._sizeMidPointVariants[i];
+		
+		var midPointStr = "<dict>\
+<key>variant</key>\
+<string>" + variant + "</string>\
+<key>value</key>\
+<string>" + value + "</string>\
+<key>timePercentage</key>\
+<real>" + timePercentage + "</real>\
+</dict>";
+		midPointStr.replace(/\s+/, "");
+
+		// cc.log("midPointStr:" + midPointStr);
+
+		sizeMidPointsStr = sizeMidPointsStr + midPointStr;
+	}
+	// cc.log("sizeMidPointsStr:" + sizeMidPointsStr);
+	l_xml=l_xml.replace(/__sizeMidPoints__/m, sizeMidPointsStr);
+
+		var opacityMidPointsStr = "";
+	for (var i = 0; i < emitter[p_slot]._opacityMidPointValues.length; i++) {
+		var timePercentage = emitter[p_slot]._opacityMidPointTimePercentages[i];
+		var value = emitter[p_slot]._opacityMidPointValues[i];
+		var variant = emitter[p_slot]._opacityMidPointVariants[i];
+		
+		var midPointStr = "<dict>\
+<key>variant</key>\
+<string>" + variant + "</string>\
+<key>value</key>\
+<string>" + value + "</string>\
+<key>timePercentage</key>\
+<real>" + timePercentage + "</real>\
+</dict>";
+		midPointStr.replace(/\s+/, "");
+
+		// cc.log("midPointStr:" + midPointStr);
+
+		opacityMidPointsStr = opacityMidPointsStr + midPointStr;
+	}
+	// cc.log("opacityMidPointsStr:" + opacityMidPointsStr);
+	l_xml=l_xml.replace(/__opacityMidPoints__/m, opacityMidPointsStr);
 	
 	if (isPNG){
 		
